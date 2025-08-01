@@ -15,7 +15,9 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
-  return operator(a, b)
+  const result = operator(a, b)
+  if (result % 1 != 0) return parseFloat(result.toFixed(maxNumLeng - 1))
+  else return result
 }
 
 const display = document.querySelector("#result")
@@ -31,6 +33,9 @@ let operator
 
 function selectOperator() {
   operators.addEventListener("click", (e) => {
+    if (operator) {
+      calculateResult()
+    }
     operator = e.target.id
     console.log(operator)
   })
@@ -39,7 +44,7 @@ function selectOperator() {
 function updateDisplay() {
   nums.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON" && display.textContent.length < maxNumLeng) {
-      if (display.textContent === "0") {
+      if (!Number(display.textContent)) {
         firstNum = ""
         secondNum = ""
       }
@@ -60,8 +65,20 @@ function updateDisplay() {
   })
 }
 
+function calculateResult() {
+  console.log(operator)
+  if (secondNum === "0" && operator === "divide") {
+    display.textContent = "No / 0"
+    operator = ""
+  } else {
+    firstNum = operate(window[operator], Number(firstNum), Number(secondNum))
+    display.textContent = firstNum.toString()
+    secondNum = ""
+  }
+}
+
 equalsButton.addEventListener("click", () => {
-  display.textContent = operate(window[operator], Number(firstNum), Number(secondNum))
+  calculateResult()
 })
 
 updateDisplay()
