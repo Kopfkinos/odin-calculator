@@ -1,8 +1,14 @@
 body {
-  color: white;
-  font-size: 50px;
+  font-size: 75px;
   background-color: black;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .calc-container {
@@ -12,25 +18,39 @@ body {
   margin-top: 50px;
 }
 
-#result {
-  display: flex;
-  justify-content: center;
-  border: 2px solid rgb(216, 216, 216);
+#result-container {
+  background-color: #9c9d73;
+  border: 16px solid #373938;
+  outline: 10px solid #dbdbdb;
   filter: drop-shadow(2px 2px 5px gray);
+}
+
+#display-sum {
+  visibility: hidden;
+  text-align: right;
+  font-size: 50px;
+  margin: 10px;
+  margin-bottom: 0;
+}
+
+#result {
+  text-align: center;
 }
 
 .calculator {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 20px;
-  border: 10px solid rgb(7, 80, 129);
-  background-color: rgb(68, 161, 189);
+  border-radius: 7px;
+  gap: 20px;
+  padding: 30px;
+  border: 20px solid #977047;
+  background-color: #eae1d2;
 }
 
 .buttons-container {
   display: flex;
   gap: 5px;
+  padding: 1px;
 }
 
 .nums {
@@ -42,32 +62,53 @@ body {
 .num-row {
   display: flex;
   justify-content: center;
-  gap: 5px;
+  gap: 7px;
 }
 
 .operators {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 7px;
 }
 
 .bottom-buttons-container {
   display: flex;
-  gap: 5px;
+  gap: 7px;
 }
 
 #equals-button {
   width: 80%;
 }
 
+#clear-button {
+  background-color: #9c283d;
+  border: 0px;
+}
+
+#clear-button:hover {
+  background-color: #d35068;
+}
+
+#equals-button {
+  background-color: #e99204;
+  border: 0px;
+}
+
+#equals-button:hover {
+  background-color: #ffc66b;
+}
+
 button {
-  width: 60px;
-  height: 60px;
-  font-size: 50px;
+  width: 120px;
+  height: 120px;
+  border-radius: 7px;
+  font-size: 75px;
+  color: #f9ffff;
+  background-color: #4f4e4a;
   filter: drop-shadow(2px 2px 5px gray);
 }
 
 button:hover {
-  background-color: aliceblue;
+  background-color: #727272;
   border: inherit;
 }

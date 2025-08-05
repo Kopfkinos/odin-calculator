@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h1>dead simple calculator</h1>
     <div class="calc-container">
       <div class="calculator">
-        <div id="result">0</div>
+        <div id="result-container">
+          <div id="display-sum">0</div>
+          <div id="result">0</div>
+        </div>
         <div class="buttons-container">
           <div class="nums">
             <div class="num-row">
@@ -42,6 +46,7 @@
           <button id="equals-button">=</button>
           <button id="clear-button">C</button>
         </div>
+        <!-- <button id="check-variables">Vs</button> -->
       </div>
     </div>
     <script src="calc-script.js"></script>
