@@ -20,11 +20,13 @@ function operate(operator, a, b) {
   else return result
 }
 
-const display = document.querySelector("#result")
+const result = document.querySelector("#result")
+const displaySum = document.querySelector("#display-sum")
 const nums = document.querySelector(".nums")
 const operators = document.querySelector(".operators")
 const equalsButton = document.querySelector("#equals-button")
 const clearButton = document.querySelector("#clear-button")
+const checkVariablesBtn = document.querySelector("#check-variables")
 const maxNumLeng = 8
 
 let firstNum = ""
@@ -37,23 +39,30 @@ function selectOperator() {
       calculateResult()
     }
     operator = e.target.id
-    console.log(operator)
+    displaySum.textContent += e.target.textContent
   })
 }
 
-function updateDisplay() {
+function updateresult() {
   nums.addEventListener("click", (e) => {
-    if (e.target.tagName === "BUTTON" && display.textContent.length < maxNumLeng) {
-      if (!Number(display.textContent)) {
+    if (e.target.tagName === "BUTTON" && result.textContent.length < maxNumLeng) {
+      if (!Number(result.textContent)) {
         firstNum = ""
         secondNum = ""
       }
       if (!operator) {
         firstNum += e.target.textContent
-        display.textContent = firstNum
+        result.textContent = firstNum
+        displaySum.style.visibility = "visible"
+        if (displaySum.textContent === "0") {
+          displaySum.textContent = e.target.textContent
+        } else {
+          displaySum.textContent += e.target.textContent
+        }
       } else {
         secondNum += e.target.textContent
-        display.textContent = secondNum
+        result.textContent = secondNum
+        displaySum.textContent += e.target.textContent
       }
     }
   })
@@ -61,25 +70,34 @@ function updateDisplay() {
     firstNum = "0"
     secondNum = "0"
     operator = null
-    display.textContent = firstNum
+    result.textContent = firstNum
+    displaySum.style.visiblity = "hidden"
+    displaySum.textContent = "0"
   })
 }
 
 function calculateResult() {
-  console.log(operator)
   if (secondNum === "0" && operator === "divide") {
-    display.textContent = "No / 0"
+    result.textContent = "No / 0"
     operator = ""
   } else {
     firstNum = operate(window[operator], Number(firstNum), Number(secondNum))
-    display.textContent = firstNum.toString()
+    result.textContent = firstNum.toString()
+    displaySum.textContent = firstNum.toString()
     secondNum = ""
   }
 }
 
 equalsButton.addEventListener("click", () => {
   calculateResult()
+  operator = ""
 })
 
-updateDisplay()
+/* checkVariablesBtn.addEventListener("click", () => {
+  console.log("firstNum: ", firstNum)
+  console.log("secondNum: ", secondNum)
+  console.log("operator: ", operator)
+})
+ */
+updateresult()
 selectOperator()
